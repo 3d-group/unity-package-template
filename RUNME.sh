@@ -9,9 +9,13 @@ echo 'Replacing template strings...'
 
 ( shopt -s globstar dotglob;
     for file in **; do
-        if [[ -f $file ]] && [[ -w $file ]] && [[ $file != 'RUNME.sh' ]] && [[ $file != 'Samples/**' ]] && [[ $file != '.git/**' ]]; then
+        if [[ -f $file ]] && [[ -w $file ]] && [[ $file != 'RUNME.sh' ]] && [[ $file != Samples/** ]] && [[ $file != .git/** ]]; then
 		    echo "Altering file ${file}"
-            sed -i -- 's/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIENDLY_NAME}"/g;s/{{DESCRIPTION}}/"${DESCRIPTION}"/g;s/{{UNITY_VERSION}}/"${UNITY_VERSION}"/g' "$file"
+            replace="s/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIENDLY_NAME}"/g;s/{{DESCRIPTION}}/"${DESCRIPTION}"/g;s/{{UNITY_VERSION}}/"${UNITY_VERSION}"/g"
+			sed -i -- $replace "$file"
+			
+			newfile="$(echo ${file} |sed -e ${replace})"
+			mv "${file}" "${newfile}"
         fi
     done
 )
