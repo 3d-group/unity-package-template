@@ -1,11 +1,11 @@
 #!/bin/bash
 
-read -p "Enter company name (eg. 3d-group): " COMPANY
-read -p "Enter company friendly name (eg. 3D Group): " COMPANY_FRIENDLY_NAME
-read -p "Enter repository name (eg. unity-simple-notifications): " REPOSITORY_NAME
-read -p "Enter friendly name (eg. Notifications): " FRIENDLY_NAME
-read -p "Enter description (eg. Simple UI notifications for Unity game engine.): " DESCRIPTION
-read -p "Enter unity version (eg. 2019.4): " UNITY_VERSION
+read -e -p "Enter company name: " -i "3d-group" COMPANY
+read -e -p "Enter company friendly name: " -i "3D Group" COMPANY_FRIENDLY_NAME
+read -e -p "Enter repository name: " -i "unity-simple-notifications" REPOSITORY_NAME
+read -e -p "Enter friendly name: " -i "Notifications" FRIENDLY_NAME
+read -e -p "Enter description: " -i "Package for Unity game engine." DESCRIPTION
+read -e -p "Enter unity version: " -i "2019.4" UNITY_VERSION
 
 echo 'Replacing template strings...'
 
