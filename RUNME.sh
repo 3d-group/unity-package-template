@@ -26,5 +26,6 @@ echo 'Replacing template strings...'
 echo 'done.'
 
 # Remove template repository specific files
-rm README-EXAMPLE.md
+rm README.md
 rm RUNME.sh
+mv README-EXAMPLE.md README.md
