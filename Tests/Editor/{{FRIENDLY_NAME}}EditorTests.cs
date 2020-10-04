@@ -20,7 +20,7 @@ namespace Tests.Runtime
         }
 
         [UnityTest]
-        public void TestMethod_TestingHow_TestResult()
+        public IEnumerator TestMethod_TestingHow_TestResult()
         {
             // Arrange
 
