@@ -27,6 +27,6 @@ echo 'done.'
 
 # Remove template repository specific files
 rm README.md
-rm RUNME.sh
 mv example-README.md README.md
 mv example-.github .github
+rm RUNME.sh
