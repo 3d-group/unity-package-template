@@ -1,7 +1,7 @@
 {
-  "name": "Unity.com.3d-group.{{REPOSITORY_NAME}}.Editor.Tests",
+  "name": "Unity.com.{{COMPANY}}.{{REPOSITORY_NAME}}.Tests",
   "references": [
-    "Unity.com.3d-group.{{REPOSITORY_NAME}}"
+    "Unity.com.{{COMPANY}}.{{REPOSITORY_NAME}}"
   ],
   "optionalUnityReferences": [
     "TestAssemblies"

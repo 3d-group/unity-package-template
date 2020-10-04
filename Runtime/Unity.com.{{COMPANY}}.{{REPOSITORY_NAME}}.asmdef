@@ -1,11 +1,7 @@
 {
-    "name": "Unity.com.3d-group.{{REPOSITORY_NAME}}.Editor",
-    "references": [
-        "GUID:{{GUID}}"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "name": "Unity.com.{{COMPANY}}.{{REPOSITORY_NAME}}",
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

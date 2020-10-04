@@ -1,5 +1,5 @@
 {
-  "name": "com.3d-group.{{REPOSITORY_NAME}}",
+  "name": "com.{{COMPANY}}.{{REPOSITORY_NAME}}",
   "displayName": "3D Group - {{FRIENDLY_NAME}}",
   "version": "0.0.0",
   "unity": "2019.4",
@@ -8,16 +8,16 @@
     "unity",
 	"unity3d",
 	"upm",
-    "3d-group",
+    "{{COMPANY}}",
     "utility"
   ],
-  "homepage": "https://github.com/3d-group/{{REPOSITORY_NAME}}.git",
+  "homepage": "https://github.com/{{COMPANY}}/{{REPOSITORY_NAME}}.git",
   "bugs": {
-    "url": "https://github.com/3d-group/{{REPOSITORY_NAME}}/issues"
+    "url": "https://github.com/{{COMPANY}}/{{REPOSITORY_NAME}}/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/3d-group/{{REPOSITORY_NAME}}.git"
+    "url": "git+ssh://git@github.com/{{COMPANY}}/{{REPOSITORY_NAME}}.git"
   },
   "license": "MIT",
   "author": "3D Group (https://3d.fi/)",

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+read -p "Enter company name (eg. 3d-group): " COMPANY
+read -p "Enter company friendly name (eg. 3D Group): " COMPANY_FRIENDLY_NAME
 read -p "Enter repository name (eg. unity-simple-notifications): " REPOSITORY_NAME
 read -p "Enter friendly name (eg. Notifications): " FRIENDLY_NAME
 read -p "Enter description (eg. Simple UI notifications for Unity game engine.): " DESCRIPTION
@@ -11,7 +13,7 @@ echo 'Replacing template strings...'
     for file in **; do
         if [[ -f $file ]] && [[ -w $file ]] && [[ $file != 'RUNME.sh' ]] && [[ $file != Samples/** ]] && [[ $file != .git/** ]]; then
 		    echo "Altering file ${file}"
-            replace="s/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIENDLY_NAME}"/g;s/{{DESCRIPTION}}/"${DESCRIPTION}"/g;s/{{UNITY_VERSION}}/"${UNITY_VERSION}"/g"
+            replace="s/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIENDLY_NAME}"/g;s/{{DESCRIPTION}}/"${DESCRIPTION}"/g;s/{{UNITY_VERSION}}/"${UNITY_VERSION}"/g;s/{{COMPANY}}/"${COMPANY}"/g;s/{{COMPANY_FRIENDLY_NAME}}/"${COMPANY_FRIENDLY_NAME}"/g"
 			
 			# Replace template strings inside files
 			sed -i -- $replace "$file"

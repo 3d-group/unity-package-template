@@ -1,6 +1,6 @@
-[![npm package](https://img.shields.io/npm/v/com.3d-group.{{REPOSITORY_NAME}})](https://www.npmjs.com/package/com.3d-group.{{REPOSITORY_NAME}})
-[![openupm](https://img.shields.io/npm/v/com.3d-group.{{REPOSITORY_NAME}}?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.3d-group.{{REPOSITORY_NAME}}/)
-![Tests](https://github.com/3d-group/{{REPOSITORY_NAME}}/workflows/Tests/badge.svg)
+[![npm package](https://img.shields.io/npm/v/com.{{COMPANY}}.{{REPOSITORY_NAME}})](https://www.npmjs.com/package/com.{{COMPANY}}.{{REPOSITORY_NAME}})
+[![openupm](https://img.shields.io/npm/v/com.{{COMPANY}}.{{REPOSITORY_NAME}}?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.{{COMPANY}}.{{REPOSITORY_NAME}}/)
+![Tests](https://github.com/{{COMPANY}}/{{REPOSITORY_NAME}}/workflows/Tests/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 # {{FRIENDLY_NAME}}
@@ -31,12 +31,12 @@ Open `Packages/manifest.json` with your favorite text editor. Add a [scoped regi
       "name": "npmjs",
       "url": "https://registry.npmjs.org/",
       "scopes": [
-        "com.3d-group"
+        "com.{{COMPANY}}"
       ]
     }
   ],
   "dependencies": {
-    "com.3d-group.{{REPOSITORY_NAME}}": "1.0.0"
+    "com.{{COMPANY}}.{{REPOSITORY_NAME}}": "1.0.0"
   }
 }
 ```
@@ -44,10 +44,10 @@ Package should now appear in package manager.
 
 ### via OpenUPM
 
-The package is also available on the [openupm registry](https://openupm.com/packages/com.3d-group.{{REPOSITORY_NAME}}). You can install it eg. via [openupm-cli](https://github.com/openupm/openupm-cli).
+The package is also available on the [openupm registry](https://openupm.com/packages/com.{{COMPANY}}.{{REPOSITORY_NAME}}). You can install it eg. via [openupm-cli](https://github.com/openupm/openupm-cli).
 
 ```
-openupm add com.3d-group.{{REPOSITORY_NAME}}
+openupm add com.{{COMPANY}}.{{REPOSITORY_NAME}}
 ```
 
 ### via Git URL
@@ -56,7 +56,7 @@ Open `Packages/manifest.json` with your favorite text editor. Add following line
 ```json
 {
   "dependencies": {
-    "com.3d-group.{{REPOSITORY_NAME}}": "https://github.com/3d-group/{{REPOSITORY_NAME}}.git"
+    "com.{{COMPANY}}.{{REPOSITORY_NAME}}": "https://github.com/{{COMPANY}}/{{REPOSITORY_NAME}}.git"
   }
 }
 ```
@@ -71,7 +71,7 @@ Open `Packages/manifest.json` with your favorite text editor. Add following line
 {
   "dependencies": {
   },
-  "testables": [ "com.3d-group.{{REPOSITORY_NAME}}" ]
+  "testables": [ "com.{{COMPANY}}.{{REPOSITORY_NAME}}" ]
 }
 ```
 
