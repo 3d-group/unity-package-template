@@ -12,8 +12,11 @@ echo 'Replacing template strings...'
         if [[ -f $file ]] && [[ -w $file ]] && [[ $file != 'RUNME.sh' ]] && [[ $file != Samples/** ]] && [[ $file != .git/** ]]; then
 		    echo "Altering file ${file}"
             replace="s/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIENDLY_NAME}"/g;s/{{DESCRIPTION}}/"${DESCRIPTION}"/g;s/{{UNITY_VERSION}}/"${UNITY_VERSION}"/g"
+			
+			# Replace template strings inside files
 			sed -i -- $replace "$file"
 			
+			# Replace template strings on file names
 			newfile="$(echo ${file} |sed -e ${replace})"
 			mv "${file}" "${newfile}"
         fi
@@ -21,3 +24,7 @@ echo 'Replacing template strings...'
 )
 
 echo 'done.'
+
+# Remove template repository specific files
+rm README-EXAMPLE.md
+rm RUNME.sh
