@@ -1,0 +1,26 @@
+name: Acquire activation file
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI or API.
+on:
+  workflow_dispatch:
+    inputs:
+      unity-version:
+        description: 'Unity version'
+        default: 2019.4.1f1
+        required: true
+
+jobs:
+  activation:
+    name: Request manual activation file 🔑
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request manual activation
+        id: getManualLicenseFile
+        uses: webbertakken/unity-request-manual-activation-file@v1.1
+        with:
+          unityVersion: ${{ github.event.inputs.unity-version }}
+      - name: Expose as artifact # Upload artifact (Unity_v20XX.X.XXXX.alf)
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
