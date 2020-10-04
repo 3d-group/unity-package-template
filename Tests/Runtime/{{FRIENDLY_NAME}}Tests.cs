@@ -25,8 +25,10 @@ namespace Tests.Runtime
             // Arrange
 
             // Act
+            yield return null;
 
             // Assert
+            Assert.AreEqual(1, 1);
         }
     }
 }
