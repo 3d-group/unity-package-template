@@ -44,11 +44,11 @@ rm README.md
 rm CONTRIBUTING.md
 rm LICENSE
 rm package.json
-mv example-README.md README.md
-mv example-CONTRIBUTING.md CONTRIBUTING.md
-mv example-LICENSE LICENSE
-mv example-package.json package.json
-mv example-.github .github
+mv templates/README.md README.md
+mv templates/CONTRIBUTING.md CONTRIBUTING.md
+mv templates/LICENSE LICENSE
+mv templates/package.json package.json
+mv templates/.github .github
 rm RUNME.sh
 
 echo 'done.'
