@@ -20,7 +20,7 @@
     "url": "git+ssh://git@github.com/{{COMPANY}}/{{REPOSITORY_NAME}}.git"
   },
   "license": "MIT",
-  "author": "{{COMPANY_FRIENDLY_NAME}}",
+  "author": "{{COMPANY_FRIENDLY_NAME}} ({{COMPANY_WEBSITE}})",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }
