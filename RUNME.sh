@@ -32,7 +32,9 @@ echo 'done.'
 # Remove template repository specific files
 rm README.md
 rm LICENSE
+rm package.json
 mv example-README.md README.md
 mv example-LICENSE LICENSE
+mv example-package.json package.json
 mv example-.github .github
 rm RUNME.sh

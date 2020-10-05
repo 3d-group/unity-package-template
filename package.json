@@ -1,26 +1,25 @@
 {
-  "name": "com.{{COMPANY}}.{{REPOSITORY_NAME}}",
-  "displayName": "{{COMPANY_FRIENDLY_NAME}} - {{FRIENDLY_NAME}}",
-  "version": "0.0.0",
-  "unity": "2019.4",
-  "description": "{{DESCRIPTION}}",
+  "name": "com.3d-group.unity-package-template",
+  "displayName": "3D Group - Unity package template",
+  "version": "1.0.0",
+  "description": "Template for creating Unity game engine packages",
   "keywords": [
     "unity",
 	"unity3d",
 	"upm",
-    "{{COMPANY}}",
+    "3d-group",
     "utility"
   ],
-  "homepage": "https://github.com/{{COMPANY}}/{{REPOSITORY_NAME}}.git",
+  "homepage": "https://github.com/3d-group/unity-package-template.git",
   "bugs": {
-    "url": "https://github.com/{{COMPANY}}/{{REPOSITORY_NAME}}/issues"
+    "url": "https://github.com/3d-group/unity-package-template/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/{{COMPANY}}/{{REPOSITORY_NAME}}.git"
+    "url": "git+ssh://git@github.com/3d-group/unity-package-template.git"
   },
   "license": "MIT",
-  "author": "{{COMPANY_FRIENDLY_NAME}} (https://3d.fi/)",
+  "author": "3D Group (https://3d.fi/)",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }

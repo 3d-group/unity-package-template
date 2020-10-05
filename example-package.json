@@ -1,0 +1,27 @@
+{
+  "name": "com.{{COMPANY}}.{{REPOSITORY_NAME}}",
+  "displayName": "{{COMPANY_FRIENDLY_NAME}} - {{FRIENDLY_NAME}}",
+  "version": "0.0.0",
+  "unity": "{{UNITY_VERSION}}",
+  "description": "{{DESCRIPTION}}",
+  "keywords": [
+    "unity",
+	"unity3d",
+	"upm",
+    "{{COMPANY}}",
+    "utility"
+  ],
+  "homepage": "https://github.com/{{COMPANY}}/{{REPOSITORY_NAME}}.git",
+  "bugs": {
+    "url": "https://github.com/{{COMPANY}}/{{REPOSITORY_NAME}}/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/{{COMPANY}}/{{REPOSITORY_NAME}}.git"
+  },
+  "license": "MIT",
+  "author": "{{COMPANY_FRIENDLY_NAME}}",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
