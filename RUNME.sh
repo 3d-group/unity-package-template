@@ -17,26 +17,40 @@ read -e -p "Friendly name: " -i "Notifications" FRIENDLY_NAME
 read -e -p "Description: " -i "Package for Unity game engine." DESCRIPTION
 read -e -p "Unity version: " -i "2019.4" UNITY_VERSION
 
+# Escape special characters for input to be used in sed
+COMPANY_FRIENDLY_NAME=$(echo "$COMPANY_FRIENDLY_NAME" | sed -e 's/[]\/$*.^[]/\\&/g');
+COMPANY=$(echo "$COMPANY" | sed -e 's/[]\/$*.^[]/\\&/g');
+REPORT_EMAIL=$(echo "$REPORT_EMAIL" | sed -e 's/[]\/$*.^[]/\\&/g');
+COMPANY_WEBSITE=$(echo "$COMPANY_WEBSITE" | sed -e 's/[]\/$*.^[]/\\&/g');
+REPOSITORY_NAME=$(echo "$REPOSITORY_NAME" | sed -e 's/[]\/$*.^[]/\\&/g');
+FRIENDLY_NAME=$(echo "$FRIENDLY_NAME" | sed -e 's/[]\/$*.^[]/\\&/g');
+DESCRIPTION=$(echo "$DESCRIPTION" | sed -e 's/[]\/$*.^[]/\\&/g');
+UNITY_VERSION=$(echo "$UNITY_VERSION" | sed -e 's/[]\/$*.^[]/\\&/g');
+
 echo 'Replacing template strings...'
 
+# Get current year for license, etc. 2021
 YEAR="$(date +'%Y')"
+
+# Form sed command and store it into a file. Ran into problems with white spaces when trying to pass this as parameter. 
+echo "s/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIENDLY_NAME}"/g;s/{{DESCRIPTION}}/"${DESCRIPTION}"/g;s/{{UNITY_VERSION}}/"${UNITY_VERSION}"/g;s/{{COMPANY}}/"${COMPANY}"/g;s/{{COMPANY_FRIENDLY_NAME}}/"${COMPANY_FRIENDLY_NAME}"/g;s/{{YEAR}}/"${YEAR}"/g;s/{{COMPANY_WEBSITE}}/"${COMPANY_WEBSITE}"/g;s/{{REPORT_EMAIL}}/"${REPORT_EMAIL}"/g" > temp.txt
 
 ( shopt -s globstar dotglob;
     for file in **; do
-        if [[ -f $file ]] && [[ -w $file ]] && [[ $file != 'RUNME.sh' ]] && [[ $file != Samples/** ]] && [[ $file != .git/** ]]; then
+        if [[ -f $file ]] && [[ -w $file ]] && [[ $file != 'RUNME.sh' ]] && [[ $file != 'temp.txt' ]] && [[ $file != Samples/** ]] && [[ $file != .git/** ]]; then
 		    echo "Altering file ${file}"
-            replace="s/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIENDLY_NAME}"/g;s/{{DESCRIPTION}}/"${DESCRIPTION}"/g;s/{{UNITY_VERSION}}/"${UNITY_VERSION}"/g;s/{{COMPANY}}/"${COMPANY}"/g;s/{{COMPANY_FRIENDLY_NAME}}/"${COMPANY_FRIENDLY_NAME}"/g;s/{{YEAR}}/"${YEAR}"/g;s/{{COMPANY_WEBSITE}}/"${COMPANY_WEBSITE}"/g;s/{{REPORT_EMAIL}}/"${REPORT_EMAIL}"/g"
-			
+
 			# Replace template strings inside files
-			sed -i -- $replace "$file"
+			sed -i -f temp.txt "$file"
 			
 			# Replace template strings on file names
-			newfile="$(echo ${file} |sed -e ${replace})"
+			newfile="$(echo ${file} |sed -f temp.txt)"
 			mv "${file}" "${newfile}"
         fi
     done
 )
 
+rm temp.txt
 echo 'done.'
 echo 'Removing template repository specific files...'
 
@@ -50,8 +64,11 @@ mv templates/CONTRIBUTING.md CONTRIBUTING.md
 mv templates/LICENSE LICENSE
 mv templates/package.json package.json
 mv templates/.github .github
-rm RUNME.sh
+
+rmdir templates
 
 echo 'done.'
+rm RUNME.sh
 
 exit 0
+
