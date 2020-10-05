@@ -9,11 +9,13 @@ read -e -p "Enter unity version: " -i "2019.4" UNITY_VERSION
 
 echo 'Replacing template strings...'
 
+YEAR="$(date +'%Y')"
+
 ( shopt -s globstar dotglob;
     for file in **; do
         if [[ -f $file ]] && [[ -w $file ]] && [[ $file != 'RUNME.sh' ]] && [[ $file != Samples/** ]] && [[ $file != .git/** ]]; then
 		    echo "Altering file ${file}"
-            replace="s/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIENDLY_NAME}"/g;s/{{DESCRIPTION}}/"${DESCRIPTION}"/g;s/{{UNITY_VERSION}}/"${UNITY_VERSION}"/g;s/{{COMPANY}}/"${COMPANY}"/g;s/{{COMPANY_FRIENDLY_NAME}}/"${COMPANY_FRIENDLY_NAME}"/g"
+            replace="s/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIENDLY_NAME}"/g;s/{{DESCRIPTION}}/"${DESCRIPTION}"/g;s/{{UNITY_VERSION}}/"${UNITY_VERSION}"/g;s/{{COMPANY}}/"${COMPANY}"/g;s/{{COMPANY_FRIENDLY_NAME}}/"${COMPANY_FRIENDLY_NAME}"/g;s/{{YEAR}}/"${YEAR}"/g"
 			
 			# Replace template strings inside files
 			sed -i -- $replace "$file"
@@ -29,6 +31,8 @@ echo 'done.'
 
 # Remove template repository specific files
 rm README.md
+rm LICENSE
 mv example-README.md README.md
+mv example-LICENSE LICENSE
 mv example-.github .github
 rm RUNME.sh

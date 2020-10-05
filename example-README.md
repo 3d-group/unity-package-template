@@ -19,6 +19,8 @@
 
 ## How to use
 
+*Work In Progress*
+
 ## Install
 
 ### via npm
@@ -76,3 +78,11 @@ Open `Packages/manifest.json` with your favorite text editor. Add following line
 ```
 
 ## Configuration
+
+*Work In Progress*
+
+## License
+
+MIT License
+
+Copyright © {{YEAR}} {{COMPANY_FRIENDLY_NAME}}
