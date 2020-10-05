@@ -1,8 +1,6 @@
 {
     "name": "Unity.com.{{COMPANY}}.{{REPOSITORY_NAME}}.Editor",
-    "references": [
-        "GUID:{{GUID}}"
-    ],
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],
