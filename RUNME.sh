@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # Check that the script is running in correct director by checking that .git and Runtime folders exist
-if [ ! -d ".git" ] || [ ! -d "Runtime" ]
+if [ ! -f "RUNME.sh" ] || [ ! -d "Runtime" ]
 then
     echo 'ERR: You must be in the repository root to run this script.'
+	echo '(no Runtime folder or RUNME.sh found)'
     exit 1
 fi
 
