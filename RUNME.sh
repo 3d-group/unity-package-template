@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check that the script is running in correct director by checking that .git and Runtime folders exist
+if [ ! -d ".git" ] || [ ! -d "Runtime" ]
+then
+    echo 'ERR: You must be in the repository root to run this script.'
+    exit 1
+fi
+
 read -e -p "Company name: " -i "3D Group" COMPANY_FRIENDLY_NAME
 read -e -p "Company name in lower case: " -i "3d-group" COMPANY
 read -e -p "Unacceptable behavior may be reported at: " -i "reports@3d.fi" REPORT_EMAIL
@@ -30,6 +37,7 @@ YEAR="$(date +'%Y')"
 )
 
 echo 'done.'
+echo 'Removing template repository specific files...'
 
 # Remove template repository specific files
 rm README.md
@@ -42,3 +50,7 @@ mv example-LICENSE LICENSE
 mv example-package.json package.json
 mv example-.github .github
 rm RUNME.sh
+
+echo 'done.'
+
+exit 0
