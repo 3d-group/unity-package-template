@@ -1,7 +1,7 @@
 #!/bin/bash
 
-read -e -p "Enter company name: " -i "3d-group" COMPANY
-read -e -p "Enter company friendly name: " -i "3D Group" COMPANY_FRIENDLY_NAME
+read -e -p "Enter company name: " -i "3D Group" COMPANY_FRIENDLY_NAME
+read -e -p "Enter company name in lower case: " -i "3d-group" COMPANY
 read -e -p "Enter repository name: " -i "unity-simple-notifications" REPOSITORY_NAME
 read -e -p "Enter friendly name: " -i "Notifications" FRIENDLY_NAME
 read -e -p "Enter description: " -i "Package for Unity game engine." DESCRIPTION
