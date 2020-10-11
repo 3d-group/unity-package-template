@@ -59,6 +59,8 @@ rm README.md
 rm CONTRIBUTING.md
 rm LICENSE
 rm package.json
+rm .github/CODEOWNERS
+rmdir .github
 mv templates/README.md README.md
 mv templates/CONTRIBUTING.md CONTRIBUTING.md
 mv templates/LICENSE LICENSE
