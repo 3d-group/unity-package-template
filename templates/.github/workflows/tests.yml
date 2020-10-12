@@ -6,7 +6,13 @@ name: Tests
 # NOTE: You need create a new github repository secret UNITY_LICENSE for this to work.
 # For further details on how to add secrets, please see github docs https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository
 
-on: push
+on:
+  # Currently tests can only be ran against main branch because of how
+  # Test project is set up. See Samples\ExampleUnityProject\Packages\manifest.json
+  # Package is always cloned from the main branch for tests
+  push:
+    branches:
+      - main
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
