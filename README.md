@@ -27,7 +27,7 @@ Generated repository will contain:
 1. Create a new repository using this template
 2. Clone the new repository
 3. Run RUNME.sh (cautiously!) with bash at new repository root folder and follow instructions, if using windows [Git for Windows](https://gitforwindows.org/) provides bash and all necessary tools.
-4. Move all files (expect folders .git/ .github/ and Samples/) inside any Unity Project Assets folder. This will generate .meta files that are required by Unity. 
+4. Move all files (except folders .git/ .github/ and Samples/) inside any Unity Project Assets folder. This will generate .meta files that are required by Unity. 
 5. Move files back to the original folder
 
 **Notes:**
