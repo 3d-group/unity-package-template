@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check that the script is running in correct director by checking that .git and Runtime folders exist
 if [ ! -f "RUNME.sh" ] || [ ! -d "Runtime" ]
@@ -8,14 +8,27 @@ then
     exit 1
 fi
 
-read -e -p "Company name: " -i "3D Group" COMPANY_FRIENDLY_NAME
-read -e -p "Company name in lower case: " -i "3d-group" COMPANY
-read -e -p "Unacceptable behavior may be reported at: " -i "reports@3d.fi" REPORT_EMAIL
-read -e -p "Company website: " -i "https://3d.fi" COMPANY_WEBSITE
-read -e -p "Repository name: " -i "unity-simple-notifications" REPOSITORY_NAME
-read -e -p "Friendly name: " -i "Notifications" FRIENDLY_NAME
-read -e -p "Description: " -i "Package for Unity game engine." DESCRIPTION
-read -e -p "Unity version: " -i "2019.4" UNITY_VERSION
+# For reading variable from either command line argument or from user input
+setvar() {
+  local varname argument default prompt
+  varname=$1; argument=$2; prompt=$3; default=$4
+  if [[ $argument ]]; then
+    declare -g "$varname"="$argument"
+  elif read -r -e -p "$prompt (${default}):" "${varname?}" && [[ -n ${!varname} ]]; then
+    return 0
+  else
+    declare -g "$varname"="$default"
+  fi
+}
+
+setvar COMPANY_FRIENDLY_NAME "$1" "Company name" "3D Group"
+setvar COMPANY "$2" "Company name in lower case" "3d-group"
+setvar REPORT_EMAIL "$3" "Unacceptable behavior may be reported at" "support@${COMPANY}.com"
+setvar COMPANY_WEBSITE "$4" "Company website" "https://${COMPANY}.com"
+setvar REPOSITORY_NAME "$5" "Repository name" "unity-simple-notifications"
+setvar FRIENDLY_NAME "$6" "Friendly name for project" "Notifications"
+setvar DESCRIPTION "$7" "Description" "Package for Unity game engine."
+setvar UNITY_VERSION "$8" "Unity version" "2021.3.11f1"
 
 # Escape special characters for input to be used in sed
 COMPANY_FRIENDLY_NAME=$(echo "$COMPANY_FRIENDLY_NAME" | sed -e 's/[]\/$*.^[]/\\&/g');
@@ -33,7 +46,7 @@ echo 'Replacing template strings...'
 YEAR="$(date +'%Y')"
 
 # Form sed command and store it into a file. Ran into problems with white spaces when trying to pass this as parameter. 
-echo "s/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIENDLY_NAME}"/g;s/{{DESCRIPTION}}/"${DESCRIPTION}"/g;s/{{UNITY_VERSION}}/"${UNITY_VERSION}"/g;s/{{COMPANY}}/"${COMPANY}"/g;s/{{COMPANY_FRIENDLY_NAME}}/"${COMPANY_FRIENDLY_NAME}"/g;s/{{YEAR}}/"${YEAR}"/g;s/{{COMPANY_WEBSITE}}/"${COMPANY_WEBSITE}"/g;s/{{REPORT_EMAIL}}/"${REPORT_EMAIL}"/g" > temp.txt
+echo "s/{{REPOSITORY_NAME}}/""${REPOSITORY_NAME}""/g;s/{{FRIENDLY_NAME}}/""${FRIENDLY_NAME}""/g;s/{{DESCRIPTION}}/""${DESCRIPTION}""/g;s/{{UNITY_VERSION}}/""${UNITY_VERSION}""/g;s/{{COMPANY}}/""${COMPANY}""/g;s/{{COMPANY_FRIENDLY_NAME}}/""${COMPANY_FRIENDLY_NAME}""/g;s/{{YEAR}}/""${YEAR}""/g;s/{{COMPANY_WEBSITE}}/""${COMPANY_WEBSITE}""/g;s/{{REPORT_EMAIL}}/""${REPORT_EMAIL}""/g" > temp.txt
 
 ( shopt -s globstar dotglob;
     for file in **; do
@@ -41,7 +54,7 @@ echo "s/{{REPOSITORY_NAME}}/"${REPOSITORY_NAME}"/g;s/{{FRIENDLY_NAME}}/"${FRIEND
 		    echo "Altering file ${file}"
 
 			# Replace template strings inside files
-			sed -i -f temp.txt "$file"
+			sed -i '' -f temp.txt "$file"
 			
 			# Replace template strings on file names
 			newfile="$(echo ${file} |sed -f temp.txt)"
@@ -60,14 +73,14 @@ rm CONTRIBUTING.md
 rm LICENSE
 rm package.json
 rm .github/CODEOWNERS
-rmdir .github
-mv templates/README.md README.md
-mv templates/CONTRIBUTING.md CONTRIBUTING.md
-mv templates/LICENSE LICENSE
-mv templates/package.json package.json
-mv templates/.github .github
+rm -rf .github
+mv -f templates/README.md README.md
+mv -f templates/CONTRIBUTING.md CONTRIBUTING.md
+mv -f templates/LICENSE LICENSE
+mv -f templates/package.json package.json
+mv -f templates/.github .github
 
-rmdir templates
+rm -rf templates
 
 echo 'done.'
 rm RUNME.sh
